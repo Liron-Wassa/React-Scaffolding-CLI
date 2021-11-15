@@ -54,6 +54,23 @@ arg@^4.1.0:
   resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/arg/-/arg-4.1.3.tgz#269fc7ad5b8e42cb63c896d5666017261c144089"
   integrity sha1-Jp/HrVuOQstjyJbVZmAXJhwUQIk=
 
+commander-ts@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/commander-ts/-/commander-ts-0.2.0.tgz#14391337c1c725399cdfca5717da8e4fd0688eda"
+  integrity sha1-FDkTN8HHJTmc38pXF9qOT9Bojto=
+  dependencies:
+    commander "^7.2.0"
+
+commander@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
+  integrity sha1-o2y1fQtQHOEI5NIFWaFQo5HZerc=
+
+commander@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
+  integrity sha1-SDfqGy2me5xhamevuw+v7lZ7ymY=
+
 create-require@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.intuit.com:443/artifactory/api/npm/npm-intuit/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"

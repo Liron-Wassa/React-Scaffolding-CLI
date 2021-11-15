@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const commander_1 = require("commander");
+const commands_1 = require("./commands");
+commander_1.program.version('1.0.0');
+commander_1.program.command('rtc <fileName>').action(commands_1.rtc);
+commander_1.program.option('-t, --template <type>', 'set extension of component file, default is ".tsx"', '.tsx');
+commander_1.program.option('-st, --styled-template <type>', 'set style template for component, default is "styled-component"', 'styled-component');
+console.log(`template: ${commander_1.program.opts().t}`);
+commander_1.program.parse();

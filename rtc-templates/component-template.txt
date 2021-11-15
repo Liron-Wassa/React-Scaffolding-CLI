@@ -1,0 +1,15 @@
+import React, { useState, useEffect } from 'react';
+
+import { StyledDiv } from './{{fileName}}Styles.tsx';
+
+type {{fileName}}Props = {
+
+};
+
+const {{fileName}} = ({}: {{fileName}}Props) => {
+    return (
+        <StyledDiv>{{fileName}}</StyledDiv>
+    );
+};
+
+export default {{fileName}};
