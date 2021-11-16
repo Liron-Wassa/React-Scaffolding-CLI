@@ -1,0 +1,9 @@
+type {{fileName}} = {
+
+};
+
+const {{fileName}} = (): {{fileName}} => {
+
+};
+
+export default {{fileName}};
