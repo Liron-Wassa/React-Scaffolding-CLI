@@ -1,8 +1,10 @@
+#!/usr/bin/env node
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const commander_1 = require("commander");
 const commands_1 = require("./commands");
-commander_1.program.version('1.0.0');
+commander_1.program.version('1.0.0')
+    .description('A CLI for creating react component');
 commander_1.program.command('rtc <fileName>')
     .action(commands_1.rtc)
     .description('Create component template');

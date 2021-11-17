@@ -1,8 +1,11 @@
+#!/usr/bin/env node
+
 import { program } from 'commander';
 
 import { rtc, rtch } from './commands';
 
-program.version('1.0.0');
+program.version('1.0.0')
+.description('A CLI for creating react component');
 
 program.command('rtc <fileName>')
 .action(rtc)

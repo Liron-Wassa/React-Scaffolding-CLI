@@ -1,21 +1,61 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rtch = exports.rtc = void 0;
-const path_1 = __importDefault(require("path"));
-const fs_1 = __importDefault(require("fs"));
+const path_1 = __importStar(require("path"));
+const fs_1 = __importStar(require("fs"));
 const constants_1 = require("./constants");
+const getRootDirectory = () => __awaiter(void 0, void 0, void 0, function* () {
+    for (const path of module.paths) {
+        try {
+            const prospectivePkgJsonDir = (0, path_1.dirname)(path);
+            yield fs_1.promises.access(path, fs_1.constants.F_OK);
+            return prospectivePkgJsonDir;
+        }
+        catch (error) {
+            console.error(error);
+        }
+        ;
+    }
+    ;
+});
 // Paths definitions
-const rtcPath = path_1.default.resolve('rtc');
-const rtcConfigPath = path_1.default.resolve('rtc', 'rtc.config.json');
-const rtcTemplatePath = path_1.default.resolve('rtc', 'rtc-templates');
-const componentTemplatePath = path_1.default.resolve('rtc', 'rtc-templates', 'component-template.txt');
-const hookTemplatePath = path_1.default.resolve('rtc', 'rtc-templates', 'hook-template.txt');
-const styleTemplatePath = path_1.default.resolve('rtc', 'rtc-templates', 'style-template.txt');
-const componentTestTemplatePath = path_1.default.resolve('rtc', 'rtc-templates', 'component-test-template.txt');
-const hookTestTemplatePath = path_1.default.resolve('rtc', 'rtc-templates', 'hook-test-template.txt');
+const rootProjectPath = path_1.default.join(__dirname, '..');
+const rtcPath = path_1.default.join(rootProjectPath, 'rtc');
+const rtcConfigPath = path_1.default.join(rootProjectPath, 'rtc', 'rtc.config.json');
+const rtcTemplatePath = path_1.default.join(rootProjectPath, 'rtc', 'rtc-templates');
+const componentTemplatePath = path_1.default.join(rootProjectPath, 'rtc', 'rtc-templates', 'component-template.txt');
+const hookTemplatePath = path_1.default.join(rootProjectPath, 'rtc', 'rtc-templates', 'hook-template.txt');
+const styleTemplatePath = path_1.default.join(rootProjectPath, 'rtc', 'rtc-templates', 'style-template.txt');
+const componentTestTemplatePath = path_1.default.join(rootProjectPath, 'rtc', 'rtc-templates', 'component-test-template.txt');
+const hookTestTemplatePath = path_1.default.join(rootProjectPath, 'rtc', 'rtc-templates', 'hook-test-template.txt');
 const checkIfRequiredFilesExist = (paths) => {
     paths.forEach(path => {
         if (!fs_1.default.existsSync(path))
@@ -46,7 +86,6 @@ const createComponentTemplate = (fileName) => {
     const fileExtension = validateFileExtension(config['file-extension']);
     const styleExtension = validateStyleExtension(config['style-extension']);
     const currentDirectory = path_1.default.resolve(process.cwd());
-    console.log(currentDirectory, __dirname);
     const componentTemplate = fs_1.default.readFileSync(componentTemplatePath, 'utf8').replace(/{{fileName}}/g, fileName);
     const folderPath = `${currentDirectory}/${fileName}`;
     checkIfFileAlreadyExists(folderPath);

@@ -1,17 +1,30 @@
-import path from 'path';
-import fs from 'fs';
+import path, { dirname } from 'path';
+import fs, { constants, promises } from 'fs';
 
 import { ValidFileExtension, ValidStyleExtension } from './constants';
 
+const getRootDirectory = async () => {
+    for (const path of module.paths) {
+        try {
+            const prospectivePkgJsonDir = dirname(path);
+            await promises.access (path, constants.F_OK);
+            return prospectivePkgJsonDir;
+        } catch (error) {
+            console.error(error);
+        };
+    };
+};
+
 // Paths definitions
-const rtcPath = path.resolve('rtc');
-const rtcConfigPath = path.resolve('rtc', 'rtc.config.json');
-const rtcTemplatePath = path.resolve('rtc', 'rtc-templates');
-const componentTemplatePath = path.resolve('rtc', 'rtc-templates', 'component-template.txt');
-const hookTemplatePath = path.resolve('rtc', 'rtc-templates', 'hook-template.txt');
-const styleTemplatePath = path.resolve('rtc', 'rtc-templates', 'style-template.txt');
-const componentTestTemplatePath = path.resolve('rtc', 'rtc-templates', 'component-test-template.txt');
-const hookTestTemplatePath = path.resolve('rtc', 'rtc-templates', 'hook-test-template.txt');
+const rootProjectPath = path.join(__dirname, '..');
+const rtcPath = path.join(rootProjectPath, 'rtc');
+const rtcConfigPath = path.join(rootProjectPath, 'rtc', 'rtc.config.json');
+const rtcTemplatePath = path.join(rootProjectPath, 'rtc', 'rtc-templates');
+const componentTemplatePath = path.join(rootProjectPath, 'rtc', 'rtc-templates', 'component-template.txt');
+const hookTemplatePath = path.join(rootProjectPath, 'rtc', 'rtc-templates', 'hook-template.txt');
+const styleTemplatePath = path.join(rootProjectPath, 'rtc', 'rtc-templates', 'style-template.txt');
+const componentTestTemplatePath = path.join(rootProjectPath, 'rtc', 'rtc-templates', 'component-test-template.txt');
+const hookTestTemplatePath = path.join(rootProjectPath, 'rtc', 'rtc-templates', 'hook-test-template.txt');
 
 const checkIfRequiredFilesExist = (paths: string[]) => {
     paths.forEach(path => {
