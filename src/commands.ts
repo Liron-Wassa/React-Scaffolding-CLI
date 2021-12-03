@@ -16,7 +16,7 @@ const getRootDirectory = async () => {
 };
 
 // Paths definitions
-const rootProjectPath = path.join(__dirname, '..');
+const rootProjectPath = path.join(__dirname, '..', '..', '..');
 const rtcPath = path.join(rootProjectPath, 'rtc');
 const rtcConfigPath = path.join(rootProjectPath, 'rtc', 'rtc.config.json');
 const rtcTemplatePath = path.join(rootProjectPath, 'rtc', 'rtc-templates');
